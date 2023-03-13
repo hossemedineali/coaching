@@ -2,7 +2,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-
+import coachanimatedgif from '../../public/coachannimated.gif'
+import target from '../../public/target.jpg'
+import HeroSvg from './components/layout/ui/herosvg'
+import {motion} from 'framer-motion'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -14,8 +17,17 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        
+      <main className='relative '>
+
+<motion.div initial={{opacity:0,y:6}} animate={{opacity:1,y:0 }} transition={{duration:2,delay:0,ease:'linear'}} className='  pt-10 flex flex-col md:flex-row w-full min-h-[calc(100vh-4rem)] max-h-[calc(100vh-4rem)] '>
+  <div className='min-h-[calc(45vh)] w-full md:h-min-h-[calc(100vh-3.5rem)] md:w-1/2 flex flex-col justify-center gap-4 px-4 '>
+    <h1 className='text-4xl text-center md:text-left font-bold'>Unlock Your Potential with Expert Business Training</h1>
+    <p>Ready to take your business to the next level? Our expert coach has the skills and experience to help you achieve success. From developing effective marketing strategies to enhancing your leadership skills, our personalized coaching will give you the tools you need to succeed. </p>
+    <button className='bg-indigo-800 py-2 px-4 w-fit mx-auto mt-2 text-white font-bold rounded-2xl'>Find a Seminar</button>
+  </div>
+  <div className='min-h-[calc(45vh)] w-full md:min-h-[calc(100vh-3.5rem)] md:w-1/2  pt-10' ><HeroSvg/></div>
+{/*   <div className='min-h-[calc(48vh)] w-full md:min-h-[calc(100vh-3.5rem)] md:w-1/2  ' style={{backgroundImage:`url(${coachanimatedgif.src})`,backgroundSize:'100% auto', backgroundRepeat:'no-repeat'}}> </div>
+ */}</motion.div>
       </main>
     </>
   )

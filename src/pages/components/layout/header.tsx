@@ -3,18 +3,44 @@ import { useState } from "react";
 import logo from '../../../../public/logo.jpeg'
 
 const Header = () => {
-  const [subPortfolio , setSubPortfolio]=useState(false)
+  const [showMenu , setShowMenu]=useState(false)
+  
   return (
-    <header className="h-14    gap-10  flex  items-center justify-evenly shadow-xl">
+    <header className="h-14    gap-10  flex flex-wrap items-center  shadow-xl">
+      <div className="flex-grow  flex justify-center">
+
         <Logo/>
-        <nav className=" mx-auto   flex-grow ">
-          <ul className="flex justify-evenly flex-    gap-2 ">
+      </div>
+
+      {showMenu&&<div className="fixed right-0 w-64  bg-indigo-500 z-20 shadow-2xl shadow-black top-0 bottom-0 ">
+        <div className="w-full h-full  pt-10 relative">
+        <svg onClick={()=>{setShowMenu(!showMenu)}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-10 hover:cursor-pointer absolute top-3 right-3 h-10">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+</svg>
+
+    <ul className="flex flex-col p-5 gap-5">
+      <li>Home</li>
+      <li>Meet jan</li>
+      <li>what clients say</li>
+      <li>2019 scheduale"</li>
+      <li>register for a seminaire</li>
+      <li>Contact</li>
+
+    </ul>
+          </div></div>}
+
+
+        <svg onClick={()=>{setShowMenu(!showMenu)}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 ml-auto mr-5  hover:cursor-pointer lg:hidden">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+</svg>
+
+        <nav className=" mx-auto  hidden lg:flex  flex-grow ">
+          <ul className="lg:flex justify-evenly flex-    gap-2   ">
             <li className="  ">Home</li>
             <li className="  ">Meet Jan</li>
           
                 
-            <li onMouseEnter={()=>{setSubPortfolio(true)}}
-              onMouseLeave={()=>{setSubPortfolio(false)}}
+            <li
             className="   relative ">What clients say
               {/* <ul  className={`tooltip w-40 mt-4 px-3 gap-2 py-2 rounded-xl -translate-x-6 mx-auto border  absolute ${subPortfolio?'flex flex-col':'hidden'}`}>
                 <li className=" ">Case Studies</li>
