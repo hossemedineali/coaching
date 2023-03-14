@@ -1,11 +1,14 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
+ 
 import logo from '../../../../public/logo.jpeg'
 
 const Header = () => {
   const [showMenu , setShowMenu]=useState(false)
 
-  const links=['Home','Meet jan','testimonial' ,'schedual',' Book Seat','contact']
+  const links=['Home','Meet jan','testimonial' ,'schedual',' Book a Seat','contact']
+  const Links=[{title:'Home',route:'/'},{title:'Meet jan',route:''},{title:'testimonial',route:''},{title:'schedual',route:''},{title:'Book a Seat',route:''},{title:'contact',route:''}]
   
   return (
     <header className="h-14    gap-10  flex flex-wrap items-center  shadow-xl">
@@ -22,9 +25,9 @@ const Header = () => {
 
     <ul className=" flex flex-col p-5 gap-5">
         {
-          links.map((item,index)=>{
+          Links.map(({title,route},index)=>{
             return <li  key={index}>
-              <Underline link={item}/>
+              <Underline link={title} route={route} />
             </li>
           })
         }
@@ -37,12 +40,12 @@ const Header = () => {
   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
 </svg>
 
-        <nav className=" mx-auto   hidden lg:flex  font-semibold flex-grow  ">
-        <ul className=" flex   w-full gap-5">
+        <nav className=" mx-auto   hidden lg:flex  font-semibold flex-grow    ">
+        <ul className=" flex   w-full  justify-evenly">
         {
-          links.map((item,index)=>{
-            return <li  key={index}>
-              <Underline link={item} />
+          Links.map(({title,route},index)=>{
+            return <li className=""  key={index}>
+              <Underline link={title} route={route} />
             </li>
           })
         }
@@ -64,14 +67,19 @@ const Header = () => {
 };
 
 type UndelaineProps={
-      link:string
+      link:string,
+      route:string
 }
-const Underline:React.FC<UndelaineProps>=({link})=>{
+const Underline:React.FC<UndelaineProps>=({link,route})=>{
 
+  const router=useRouter()
+  console.log(router.route)
+  const isCurrentRoute=router.asPath==route
+  console.log(isCurrentRoute)
   return <div>
     <span className="text-2xl">
       {link}
-      <svg className="w-fit  " viewBox="0 0 203 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg className={`${isCurrentRoute?'flex':'hidden'}`} viewBox="0 0 203 6" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0 1.00001C0 1.00001 194.975 0.733846 198.5 1.00001C202.025 1.26617 205.887 5.11982 196 5.50001H0" strokeWidth={3} stroke="black"/>
   
   </svg>
