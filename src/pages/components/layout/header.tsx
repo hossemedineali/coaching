@@ -4,10 +4,12 @@ import logo from '../../../../public/logo.jpeg'
 
 const Header = () => {
   const [showMenu , setShowMenu]=useState(false)
+
+  const links=['Home','Meet jan','testimonial' ,'schedual',' Book Seat','contact']
   
   return (
     <header className="h-14    gap-10  flex flex-wrap items-center  shadow-xl">
-      <div className="flex-grow  flex justify-center">
+      <div className=" sm:px-10 pl-2  mx-auto flex-grow lg:flex-grow-0 flex justify-center">
 
         <Logo/>
       </div>
@@ -18,13 +20,14 @@ const Header = () => {
   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
 </svg>
 
-    <ul className="flex flex-col p-5 gap-5">
-      <li>Home</li>
-      <li>Meet jan</li>
-      <li>what clients say</li>
-      <li>2019 scheduale"</li>
-      <li>register for a seminaire</li>
-      <li>Contact</li>
+    <ul className=" flex flex-col p-5 gap-5">
+        {
+          links.map((item,index)=>{
+            return <li  key={index}>
+              <Underline link={item}/>
+            </li>
+          })
+        }
 
     </ul>
           </div></div>}
@@ -34,27 +37,17 @@ const Header = () => {
   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
 </svg>
 
-        <nav className=" mx-auto  hidden lg:flex  flex-grow ">
-          <ul className="lg:flex justify-evenly flex-    gap-2   ">
-            <li className="  ">Home</li>
-            <li className="  ">Meet Jan</li>
-          
-                
-            <li
-            className="   relative ">What clients say
-              {/* <ul  className={`tooltip w-40 mt-4 px-3 gap-2 py-2 rounded-xl -translate-x-6 mx-auto border  absolute ${subPortfolio?'flex flex-col':'hidden'}`}>
-                <li className=" ">Case Studies</li>
-                <li className="   "> Listing Images</li>
-                <li className="   ">Videos Production</li>
-              </ul> */}
+        <nav className=" mx-auto   hidden lg:flex  font-semibold flex-grow  ">
+        <ul className=" flex   w-full gap-5">
+        {
+          links.map((item,index)=>{
+            return <li  key={index}>
+              <Underline link={item} />
             </li>
+          })
+        }
 
-
-            
-            <li className="  ">2019 scheduale</li>
-            <li className="  ">Register for a seminair</li>
-            <li className="  ">contact</li>
-          </ul>
+    </ul>
         </nav>
 
         
@@ -70,10 +63,26 @@ const Header = () => {
   );
 };
 
+type UndelaineProps={
+      link:string
+}
+const Underline:React.FC<UndelaineProps>=({link})=>{
+
+  return <div>
+    <span className="text-2xl">
+      {link}
+      <svg className="w-fit  " viewBox="0 0 203 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 1.00001C0 1.00001 194.975 0.733846 198.5 1.00001C202.025 1.26617 205.887 5.11982 196 5.50001H0" strokeWidth={3} stroke="black"/>
+  
+  </svg>
+    </span>
+  </div>
+  
+}
 
 const Logo=()=>{
   return (
-    <svg width="220" height="50" className="" viewBox="0 0 1024 308" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg  className=" w-28 h-10 sm:w-44 sm:h-12" viewBox="0 0 1024 308" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
 <path d="M0 0H1024V308H0V0Z" fill="url(#pattern0)"/>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
